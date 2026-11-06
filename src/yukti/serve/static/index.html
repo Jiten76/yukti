@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yukti — patterns, flows, decisions</title>
+  <link rel="stylesheet" href="/static/platinum.css?v=2">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-name">Yukti</span>
+      <span class="brand-tag">patterns × flows × decisions</span>
+    </div>
+    <div class="header-controls">
+      <label class="mode-switch">
+        <span class="mode-switch-label">domain</span>
+        <select id="mode-select" aria-label="Governance domain"></select>
+      </label>
+      <div class="status">
+        <span class="status-dot" id="status-dot" data-state="connecting"></span>
+        <span class="status-text" id="status-text">connecting…</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-grid">
+    <!-- Fleet aggregate (top zone) -->
+    <section class="zone zone-fleet" aria-label="Fleet aggregate">
+      <h2 class="zone-title">Fleet posture</h2>
+      <p class="fleet-headline" id="fleet-headline"></p>
+      <div class="posture" id="posture"></div>
+      <div class="tile-grid" id="fleet-tiles"></div>
+    </section>
+
+    <!-- Live flow timeline (middle zone) -->
+    <section class="zone zone-timeline" aria-label="Live flow timeline">
+      <div class="zone-header">
+        <h2 class="zone-title">Live flow timeline</h2>
+        <div class="filter-bar">
+          <select id="filter-type" class="filter-select" aria-label="Filter by flow type">
+            <option value="">all flow types</option>
+          </select>
+          <select id="filter-decision" class="filter-select" aria-label="Filter by decision">
+            <option value="">all decisions</option>
+            <option value="allow">allow</option>
+            <option value="monitor">monitor</option>
+            <option value="gate">gate</option>
+            <option value="deny">deny</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="timeline-filter-chip" id="timeline-filter-chip" style="display:none"></div>
+
+      <div class="rate-strip" id="rate-strip" aria-label="Decision rate last 60s">
+        <div class="rate-cell" data-decision="allow"><span class="rate-label">allow</span><span class="rate-value" id="rate-allow">0</span></div>
+        <div class="rate-cell" data-decision="monitor"><span class="rate-label">monitor</span><span class="rate-value" id="rate-monitor">0</span></div>
+        <div class="rate-cell" data-decision="gate"><span class="rate-label">gate</span><span class="rate-value" id="rate-gate">0</span></div>
+        <div class="rate-cell" data-decision="deny"><span class="rate-label">deny</span><span class="rate-value" id="rate-deny">0</span></div>
+        <div class="rate-cell rate-cell-meta"><span class="rate-label">last 60s</span><span class="rate-value" id="rate-total">0</span></div>
+      </div>
+
+      <div class="timeline" id="timeline" role="list">
+        <p class="empty-hint">Waiting for flows…</p>
+      </div>
+    </section>
+
+    <!-- Actions (right zone) — the "what to act" leaf -->
+    <section class="zone zone-actions" aria-label="Pending actions">
+      <div class="zone-header">
+        <h2 class="zone-title">What to act on</h2>
+        <span class="zone-count" id="actions-count">0</span>
+      </div>
+      <div class="action-list" id="action-list">
+        <p class="empty-hint">No pending interventions. The fleet is governing itself.</p>
+      </div>
+    </section>
+
+    <!-- Detail drawer (bottom zone, shows on selection) -->
+    <section class="zone zone-detail" id="detail-zone" aria-label="Detail view" hidden>
+      <div class="zone-header">
+        <h2 class="zone-title" id="detail-title">Detail</h2>
+        <button class="detail-close" id="detail-close" aria-label="Close detail">×</button>
+      </div>
+      <div class="detail-body" id="detail-body"></div>
+    </section>
+  </main>
+
+  <script src="/static/platinum.js?v=2"></script>
+  <script src="/static/dashboard.js?v=2"></script>
+</body>
+</html>
