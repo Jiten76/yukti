@@ -1,0 +1,12 @@
+{
+  "lure_sha256": "0251a4afae305b1f8bef4a54d33d15d2a3013ebf1e48eb6faf069544e87dd94f",
+  "model_ids": [
+    "claude-opus-5-5",
+    "claude-sonnet-5-5"
+  ],
+  "planned_attempts": 6,
+  "prompt_sha256": "753c65e91290f9fba9ae7831408af14467675bd32fb98b99e46e3d990402c5fc",
+  "settings": {
+    "attempts_per_model": 3
+  }
+}
